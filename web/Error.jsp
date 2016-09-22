@@ -1,32 +1,17 @@
 <%-- 
-    Document   : Home
-    Created on : 20-sep-2016, 14:57:04
-    Author     : RicardoMarin
+    Document   : Error
+    Created on : 21/09/2016, 10:01:00 PM
+    Author     : Ricardo
 --%>
-
-<%-- Inicio Sesion activa --%>
-<%@page import="Rentit.modelo.Usuario"%>
-<%
-    Usuario usu = (Usuario) session.getAttribute("usuario");
-
-    if (usu == null) {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
-    }
-%>
-<%-- Fin Sesion activa --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Rentit - Home</title>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Rentit - Error</title>
         <meta name="description" content="Rentalo Aquí">
         <meta name="author" content="Ricardo Marín">
-
-        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-
         <!—[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]—>
@@ -34,6 +19,7 @@
         <style>
             body { padding-top: 60px; }
         </style>
+        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     </head>
     <body>
         <%--Inicio Barra superior menus generales --%>
@@ -52,7 +38,7 @@
         <%--Fin Barra superior menus generales --%>
 
         <%-- Inicio Contenido del cuerpo --%>
-        <div class="container"><%-- /container --%>
+        <div class="container"> <%-- /container --%>
             <h1>Ejemplo de Bootstrap para Genbeta Dev</h1>
             <p>Plantilla ejemplo para el desarrollo de un proyecto web.</p>
         </div> 
@@ -73,7 +59,6 @@
             <p>&copy; Company 2012</p>
         </footer>
         <%-- Fin Footer--%>
-
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>

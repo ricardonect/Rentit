@@ -16,25 +16,34 @@
         <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
         <link rel="stylesheet" href="login/css/style.css">
+        
+        <script type="text/javascript" language="javascript">
+        <!-- //
+            function ClearForm() {
+                document.signin.reset();
+            }
+        // -->
+        </script>
+        
     </head>
-    <body>    
-        <!-- Form Mixin-->
-        <!-- Input Mixin-->
-        <!-- Button Mixin-->
-        <!-- Pen Title-->
+    <body onload="ClearForm()">    
+        <%-- Form Mixin--%>
+        <%-- Input Mixin--%>
+        <%-- Button Mixin--%>
+        <%-- Pen Title--%>
         <div class="pen-title">
-            <h1>Rent-It</h1>
+            <h1>Rent-It - Login</h1>
         </div>
-        <!-- Form Module-->
+        <%-- Form Module--%>
         <div class="module form-module">
             <div class="toggle"><i class="fa fa-times fa-pencil"></i>
                 <div class="tooltip">Sign In | Sign Up</div>
             </div>
-            <div class="form">
+            <div name="signin" class="form">
                 <h2>Bienvenido</h2>
-                <form>
-                    <input type="text" placeholder="Usuario"/>
-                    <input type="password" placeholder="Contraseña"/>
+                <form action="ValidarSesion" method="Post">
+                    <input type="text" name="ctrl_inputUsuario" placeholder="Usuario"/>
+                    <input type="password" name="ctrl_inputPass" placeholder="Contraseña"/>
                     <button>Iniciar</button>
                 </form>
             </div>
@@ -51,7 +60,7 @@
             <div class="cta"><a href="https://about.me/rmarin">Olvidó su contraseña?</a></div>
         </div>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <!--<script src='http://codepen.io/andytran/pen/vLmRVp.js'></script>-->
+        <%--<script src='http://codepen.io/andytran/pen/vLmRVp.js'></script>--%>
 
         <script src="login/js/index.js"></script>
     </body>
