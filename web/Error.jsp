@@ -46,7 +46,7 @@
 
         <%-- Inicio Region principal--%>
         <div class="hero-unit">
-            <h1>Ups! parece que algo ah ocurrido</h1>
+            <h1>Ups! parece que algo ha ocurrido</h1>
             <p>
                 Tu usuario y contraseña estan incorrectos
             </p>
@@ -56,7 +56,7 @@
 
         <%-- Inicio Footer--%>
         <footer>
-            <p>&copy; Company 2012</p>
+            <p>&copy; Company 2016</p>
         </footer>
         <%-- Fin Footer--%>
 

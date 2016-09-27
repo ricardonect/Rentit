@@ -1,31 +1,21 @@
 <%-- 
-    Document   : Home
-    Created on : 20-sep-2016, 14:57:04
+    Document   : Productos
+    Created on : 25-sep-2016, 18:14:32
     Author     : RicardoMarin
 --%>
-
-<%-- Inicio Sesion activa --%>
-<%@page import="Rentit.modelo.Usuario"%>
-<%
-    Usuario usu = (Usuario) session.getAttribute("usuario");
-
-    if (usu == null) {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
-    }
-%>
-<%-- Fin Sesion activa --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Rentit - Home</title>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Rentit - Productos</title>
+        <title>Nuevo proyecto con Bootstrap 2.0</title>
         <meta name="description" content="Rentalo Aquí">
         <meta name="author" content="Ricardo Marín">
-
-        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <!--Inicio Responsive design-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Fin Responsive design -->
 
         <!—[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,9 +24,11 @@
         <style>
             body { padding-top: 60px; }
         </style>
+        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     </head>
     <body>
-        <%--Inicio Barra superior menus generales --%>
+
+        <!--Inicio Barra superior menus generales -->
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
@@ -56,29 +48,54 @@
                 </div>
             </div>
         </div>
-        <%--Fin Barra superior menus generales --%>
+        <!--Fin Barra superior menus generales -->
 
-        <%-- Inicio Contenido del cuerpo --%>
-        <div class="container"><%-- /container --%>
+        <!-- Inicio Contenido del cuerpo -->
+        <div class="container-fluid"> <!-- /container -->
             <h1>Ejemplo de Bootstrap para Genbeta Dev</h1>
             <p>Plantilla ejemplo para el desarrollo de un proyecto web.</p>
         </div> 
-        <%-- Fin Contenido del cuerpo --%>
+        <!-- Fin Contenido del cuerpo -->
 
-        <%-- Inicio Region principal--%>
+        <!-- Inicio Region principal-->
         <div class="hero-unit">
-            <h1>Bienvenido a nuestra plataforma Rent-It</h1>
+            <h1>Bienvenidos a nuestra página!</h1>
+            <p>
+                Texto principal de bienvenida a nuestra página. Prueba a redimiensinar el 
+                navegador y comprobará como se adapta el diseño al nuevo tamaño.
+            </p>
+            <p><a class="btn btn-primary btn-large">Más información</a></p>
         </div>
-        <%-- Fin Region principal--%>
+        <!-- Fin Region principal-->
 
-        <%-- Inicio Footer--%>
+        <!-- Inicio Filas-->
+        <div class="row-fluid">
+            <div class="span4">
+                <h2>Producto</h2>
+                <p>
+                    Descripción del producto presentado. Descripción del producto presentado. 
+                    Descripción del producto presentado.
+                </p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+            <div class="span4">
+                <h2>Producto 2</h2>
+                <p>
+                    Descripción del producto presentado. Descripción del producto presentado. 
+                    Descripción del producto presentado.
+                </p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>
+        <!-- Fin Filas-->
+
+        <!-- Inicio Footer-->
         <nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation">
             <div class="container text-center">
                 <p class="navbar-text col-md-12 col-sm-12 col-xs-12">&copy; xyz</p>
             </div>
         </nav>
-        <%-- Fin Footer--%>
-
+        <!-- Fin Footer-->
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>

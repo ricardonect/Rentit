@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
     <servlet>
         <servlet-name>ValidarSesionActiva</servlet-name>
         <servlet-class>Rentit.controlador.ValidarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MailConfirmacion</servlet-name>
+        <servlet-class>Rentit.controlador.EnviarMailConfirmacion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActivacionCuenta</servlet-name>
+        <servlet-class>Rentit.controlador.MailActivacionCuenta</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>ValidarSesionActiva</servlet-name>
         <url-pattern>/ValidarSesion</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MailConfirmacion</servlet-name>
+        <url-pattern>/EnviarMailConfirmacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActivacionCuenta</servlet-name>
+        <url-pattern>/MailActivacionCuenta</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <!-- Primera pagina al inicar-->
-    <welcome-file-list>     
+    <welcome-file-list>
         <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
-
 </web-app>

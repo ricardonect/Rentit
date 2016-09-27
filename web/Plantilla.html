@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="utf-8">
-        <title>Nuevo proyecto con Bootstrap 2.0</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Rentit - </title>
         <meta name="description" content="Rentalo Aquí">
         <meta name="author" content="Ricardo Marín">
+        <!--Inicio Responsive design-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Fin Responsive design -->
+
         <!—[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]—>
@@ -13,6 +17,11 @@
             body { padding-top: 60px; }
         </style>
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+        <!--Inicio Librerias puntaje con estrellas-->
+        <link rel="stylesheet" href="star-rating/css/style.css">
+        <script src="star-rating/js/index.js"></script>
+        <!--Fin Librerias puntaje con estrellas-->        
     </head>
     <body>
 
@@ -20,19 +29,26 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="#">Genbeta Dev</a>
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">Bio</a></li>
-                        <li><a href="#contact">Contacto</a></li>
-                    </ul>
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Rent-It</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#about">Productos</a></li>
+                            <li><a href="#contact">Contacto</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         <!--Fin Barra superior menus generales -->
 
         <!-- Inicio Contenido del cuerpo -->
-        <div class="container"> <!-- /container -->
+        <div class="container-fluid"> <!-- /container -->
             <h1>Ejemplo de Bootstrap para Genbeta Dev</h1>
             <p>Plantilla ejemplo para el desarrollo de un proyecto web.</p>
         </div> 
@@ -50,9 +66,29 @@
         <!-- Fin Region principal-->
 
         <!-- Inicio Filas-->
-        <div class="row">
+        <div class="row-fluid">
             <div class="span4">
                 <h2>Producto</h2>
+                <p>
+                    Descripción del producto presentado. Descripción del producto presentado. 
+                    Descripción del producto presentado.
+                </p>
+                <!-- Inicio Puntaje estrellas-->
+                <fieldset>
+                    <span class="star-cb-group">
+                        <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
+                        <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
+                        <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
+                        <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
+                        <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
+                        <!--<input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>-->
+                    </span>
+                </fieldset>
+                <!-- Fin Puntaje estrellas-->
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+            <div class="span4">
+                <h2>Producto 2</h2>
                 <p>
                     Descripción del producto presentado. Descripción del producto presentado. 
                     Descripción del producto presentado.
@@ -63,11 +99,13 @@
         <!-- Fin Filas-->
 
         <!-- Inicio Footer-->
-        <footer>
-            <p>&copy; Company 2012</p>
-        </footer>
+        <nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation">
+            <div class="container text-center">
+                <p class="navbar-text col-md-12 col-sm-12 col-xs-12">&copy; xyz</p>
+            </div>
+        </nav>
         <!-- Fin Footer-->
-        
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>

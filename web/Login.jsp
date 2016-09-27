@@ -16,15 +16,15 @@
         <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
         <link rel="stylesheet" href="login/css/style.css">
-        
+
         <script type="text/javascript" language="javascript">
-        <!-- //
+            <!-- //
             function ClearForm() {
                 document.signin.reset();
             }
-        // -->
+            // -->
         </script>
-        
+
     </head>
     <body onload="ClearForm()">    
         <%-- Form Mixin--%>
@@ -47,22 +47,32 @@
                     <button>Iniciar</button>
                 </form>
             </div>
-            <div class="form">
+            <div name="signup" class="form">
                 <h2>Crear Cuenta</h2>
-                <form>
-                    <input type="text" placeholder="Usuario"/>
-                    <input type="password" placeholder="Contraseña"/>
-                    <input type="email" placeholder="Correo"/>
-                    <input type="tel" placeholder="Celular"/>
+                <form action="EnviarMailConfirmacion" method="Post">
+                    <input type="text" name="ctrl_inputUser" placeholder="Usuario"/>
+                    <input type="password" name="ctrl_inputPassword" placeholder="Contraseña"/>
+                    <input type="email" name="ctrl_inputMail" placeholder="Correo"/>
+                    <input type="tel" name="ctrl_inputTel" placeholder="Celular"/>
                     <button>Register</button>
                 </form>
             </div>
             <div class="cta"><a href="https://about.me/rmarin">Olvidó su contraseña?</a></div>
         </div>
+
+        <%-- Inicio Footer--%>
+        <nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation">
+            <div class="container text-center">
+                <p class="navbar-text col-md-12 col-sm-12 col-xs-12">&copy; xyz</p>
+            </div>
+        </nav>
+        <%-- Fin Footer--%>
+
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <%--<script src='http://codepen.io/andytran/pen/vLmRVp.js'></script>--%>
 
         <script src="login/js/index.js"></script>
+
     </body>
 </html>
 
