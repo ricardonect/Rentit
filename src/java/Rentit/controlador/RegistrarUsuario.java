@@ -5,26 +5,18 @@
  */
 package Rentit.controlador;
 
-import Rentit.modelo.Usuario;
-import Rentit.modelo.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Ricardo
  */
-public class ValidarSesion extends HttpServlet {
+public class RegistrarUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,29 +28,19 @@ public class ValidarSesion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        Conexion con = new Conexion();        
-        con.Conexion();
-        con.Close();        
-        
-        Usuario usuario = new Usuario();        
-        usuario.setUsuario(request.getParameter("ctrl_inputUsuario"));
-        usuario.setPassword(request.getParameter("ctrl_inputPass"));
-        
-        String rs;
-        rs = con.Buscar(usuario.GetUser(usuario.getUsuario(), usuario.getPassword()),"id_usuario");
-        
-        if (!rs.isEmpty()) {
-                HttpSession session = request.getSession();                
-                
-                session.setAttribute("usuarioActivo", usuario);
-                
-                request.getRequestDispatcher("Home.jsp").forward(request, response);
-        } else {
-            /*usuario incorrecta*/
-            request.getRequestDispatcher("Error.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet RegistrarUsuario</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet RegistrarUsuario at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -74,11 +56,7 @@ public class ValidarSesion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ValidarSesion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -92,11 +70,7 @@ public class ValidarSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ValidarSesion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -11,12 +11,17 @@ package Rentit.modelo;
  */
 public class Usuario {
     
+    private long id_usuario;
     private String usuario;
     private String password;
     
     public Usuario() {
     }
 
+    public long getId_usuario() {
+        return id_usuario;
+    }
+    
     public String getUsuario() {
         return usuario;
     }
@@ -25,12 +30,21 @@ public class Usuario {
         return password;
     }
 
+    public void setId_usuario(long id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public String GetUser(String usr, String psw){
+        String query = "SELECT * FROM usuarios WHERE usuario = " + usr + "AND " + psw;
+        return query;
     }
     
     

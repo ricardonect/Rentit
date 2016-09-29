@@ -52,6 +52,10 @@
                 <form action="EnviarMailConfirmacion" method="Post">
                     <input type="text" name="ctrl_inputUser" placeholder="Usuario"/>
                     <input type="password" name="ctrl_inputPassword" placeholder="Contraseña"/>
+                    <input type="text" name="ctrl_inputPrimerNombre" placeholder="Primer Nombre"/>
+                    <input type="text" name="ctrl_inputSegundoNombre" placeholder="Segundo Nombre"/>
+                    <input type="text" name="ctrl_inputPrimerApellido" placeholder="Primer Apellido"/>
+                    <input type="text" name="ctrl_inputSegundoApellido" placeholder="Segundo Apellido"/>
                     <input type="email" name="ctrl_inputMail" placeholder="Correo"/>
                     <input type="tel" name="ctrl_inputTel" placeholder="Celular"/>
                     <button>Register</button>
