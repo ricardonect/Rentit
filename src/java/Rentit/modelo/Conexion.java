@@ -10,19 +10,39 @@ package Rentit.modelo;
  * @author Ricardo
  */
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Conexion {
 
-    public String servidor = "localhost";
-    public String bd = "rentit";
-    public String login = "root";
-    public String password = "/123rmarin";
-    public String url = "jdbc:mysql://" + servidor + "/" + bd;
-    public String driver = "com.mysql.jdbc.Driver";
+    private String servidor = "localhost";
+    private String bd = "rentit";
+    private String login = "root";
+    private String password = "/123rmarin";
+    private String url = "jdbc:mysql://" + servidor + "/" + bd;
+    private String driver = "com.mysql.jdbc.Driver";
     Connection conn = null;
     Statement st = null;
     ResultSet r = null;
+
+    public void Conexion() throws SQLException {
+        try {
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url, login, password);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void Close() throws SQLException {
+        try {
+            Class.forName(driver);
+            conn.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void registrar(String tabla, String datos) {
         try {

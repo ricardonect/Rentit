@@ -5,6 +5,9 @@
  */
 package Rentit.controlador;
 
+import Rentit.modelo.Conexion;
+import Rentit.modelo.Usuario;
+import Rentit.modelo.Terceros;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -40,17 +43,31 @@ public class MailActivacionCuenta extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            String usu = request.getParameter("usuario");
-            String ale = request.getParameter("aleatorio");
-            System.out.println("Request:" + usu);
-            System.out.println("Request:" + ale);
-            // System.out.println("Verificacion de los datos\n" +
-            // "SELECT * FROM TB_USUARIO WHERE USU='usuario' AND ALE='aleatorio'");
-            //Verificas con la bd!
-            String usuario = (String) request.getSession().getAttribute("usuario");
-            String aleatorio = (String) request.getSession().getAttribute("aleatoria");
-            System.out.println("Session:" + usuario);
-            System.out.println("Session:" + aleatorio);
+
+            Conexion con = new Conexion();
+            con.Conexion();
+            con.Close();
+
+            Usuario usuario = new Usuario();
+            Terceros terceros = new Terceros();
+
+            usuario.setUsuario(request.getParameter("usuario"));
+            usuario.setPassword(request.getParameter("aleatorio"));
+
+            System.out.println("Request:" + usuario.getUsuario());
+            System.out.println("Request:" + usuario.getPassword());
+
+            String rs;
+            rs = con.Buscar(usuario.GetUser(usuario.getUsuario(), usuario.getPassword()), "id_usuario");
+
+            if (!rs.isEmpty()) {
+                request.getRequestDispatcher("Error.jsp").forward(request, response);
+            }
+
+//            String usuario = (String) request.getSession().getAttribute("usuario");
+//            String aleatorio = (String) request.getSession().getAttribute("aleatoria");
+            System.out.println("Session:" + usuario.getUsuario());
+            System.out.println("Session:" + usuario.getPassword());
 
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -60,10 +77,12 @@ public class MailActivacionCuenta extends HttpServlet {
                 out.println("");
                 out.println("");
                 out.println("");
-                if (usu.equals(usuario)) {
-                    if (ale.equals(aleatorio)) {
+                
+            
+                if (usuario != null) {
+                    if (usuario != null) {
 
-                        out.println("<h3>Bienvenido Usuario:" + usu + "</h3>");
+                        out.println("<h3>Bienvenido Usuario:" + usuario.getUsuario() + "</h3>");
                         out.println("<b>Gracias por verificar su Usuario</b>");
                         out.println("");
                         out.println("");
