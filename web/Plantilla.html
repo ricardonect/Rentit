@@ -21,7 +21,47 @@
         <!--Inicio Librerias puntaje con estrellas-->
         <link rel="stylesheet" href="star-rating/css/style.css">
         <script src="star-rating/js/index.js"></script>
-        <!--Fin Librerias puntaje con estrellas-->        
+        <!--Fin Librerias puntaje con estrellas-->  
+
+        <!--Inicio librerias notificaciones -->
+        <script type="text/javascript" src="notification/js/jquery_v_1.4.js"></script>
+        <script type="text/javascript" src="notification/js/jquery_notification_v.1.js"></script>
+        <link href="notification/css/jquery_notification.css" type="text/css" rel="stylesheet"/>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+            });
+
+            function showSuccessMessage() {
+                showNotification({
+                    type: "success",
+                    message: "Registro exitoso"
+                });
+            }
+            function showErrorMessage() {
+                showNotification({
+                    type: "error",
+                    message: "Error en la transaccion"
+                });
+            }
+
+            function showWarningMessage() {
+                showNotification({
+                    type: "warning",
+                    message: "Atencion transaccion sospechosa"
+                });
+            }
+
+            function showInformationMessage() {
+                showNotification({
+                    type: "information",
+                    message: "Transaccion informativa"
+                });
+            }
+
+        </script>
+        <!--Fin librerias notificaciones -->
+
     </head>
     <body>
 
@@ -62,6 +102,10 @@
                 navegador y comprobará como se adapta el diseño al nuevo tamaño.
             </p>
             <p><a class="btn btn-primary btn-large">Más información</a></p>
+            <input type="button" class="btn btn-success" value="Show Success Message" onclick="return showSuccessMessage()"/>
+            <input type="button" class="btn btn-info"  value="Show Error Message" onclick="return showErrorMessage()"/>
+            <input type="button"  class="btn btn-warning" value="Show Warning Message" onclick="return showWarningMessage()"/>
+            <input type="button"  class="btn btn-danger" value="Show Information Message" onclick="return showInformationMessage()"/>
         </div>
         <!-- Fin Region principal-->
 
@@ -93,6 +137,18 @@
                     Descripción del producto presentado. Descripción del producto presentado. 
                     Descripción del producto presentado.
                 </p>
+                <!-- Inicio Puntaje estrellas-->
+                <fieldset>
+                    <span class="star-cb-group" id="edit">
+                        <input type="radio" id="rating-5" name="rating" value="5" disabled="disabled" /><label for="rating-5">5</label>
+                        <input type="radio" id="rating-4" name="rating" value="4" disabled="disabled" checked="checked" /><label for="rating-4">4</label>
+                        <input type="radio" id="rating-3" name="rating" value="3" disabled="disabled"/><label for="rating-3">3</label>
+                        <input type="radio" id="rating-2" name="rating" value="2" disabled="disabled"/><label for="rating-2">2</label>
+                        <input type="radio" id="rating-1" name="rating" value="1" disabled="disabled"/><label for="rating-1">1</label>
+                        <!--<input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>-->
+                    </span>
+                </fieldset>
+                <!-- Fin Puntaje estrellas-->
                 <p><a class="btn" href="#">View details &raquo;</a></p>
             </div>
         </div>
