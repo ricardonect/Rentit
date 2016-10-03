@@ -45,8 +45,7 @@ public class MailActivacionCuenta extends HttpServlet {
         try {
 
             Conexion con = new Conexion();
-            con.Conexion();
-            con.Close();
+            con.cerrarConexion();
 
             Usuario usuario = new Usuario();
             Terceros terceros = new Terceros();
@@ -58,11 +57,11 @@ public class MailActivacionCuenta extends HttpServlet {
             System.out.println("Request:" + usuario.getPassword());
 
             String rs;
-            rs = con.Buscar(usuario.GetUser(usuario.getUsuario(), usuario.getPassword()), "id_usuario");
+            //rs = con.Buscar(usuario.GetUser(usuario.getUsuario(), usuario.getPassword()), "id_usuario");
 
-            if (!rs.isEmpty()) {
-                request.getRequestDispatcher("Error.jsp").forward(request, response);
-            }
+//            if (!rs.isEmpty()) {
+//                request.getRequestDispatcher("Error.jsp").forward(request, response);
+//            }
 
 //            String usuario = (String) request.getSession().getAttribute("usuario");
 //            String aleatorio = (String) request.getSession().getAttribute("aleatoria");

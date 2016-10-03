@@ -16,164 +16,124 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
 
-    private String servidor = "localhost";
-    private String bd = "rentit";
-    private String login = "root";
-    private String password = "/123rmarin";
-    private String url = "jdbc:mysql://" + servidor + "/" + bd;
-    private String driver = "com.mysql.jdbc.Driver";
-    Connection conn = null;
-    Statement st = null;
-    ResultSet r = null;
+    private final String servidor = "localhost";
+    private final String bd = "rentit";
+    private final String login = "root";
+    private final String password = "/123rmarin";
+    private final String url = "jdbc:mysql://" + servidor + "/" + bd;
+    private final String driver = "com.mysql.jdbc.Driver";
+    public Connection con;
+    public Statement st = null;
+    public ResultSet rs = null;
 
-    public void Conexion() throws SQLException {
+    public boolean Conexion() throws SQLException {
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection(url, login, password);
+            con = DriverManager.getConnection(url, login, password);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Cargar Driver de Sunpara ODBC
+     */
+    public void cargaDriver() {
+        try { //Class.forName( "sun.jdbc.odbc.JdbcOdbcDriver" );
+            Class.forName(driver);
+        } catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "No se encuentra el Controlador");
         }
     }
 
-    public void Close() throws SQLException {
+    /**
+     * metodo ejecutar ddl
+     *
+     * @param sql
+     * @return True si pudo ejecutar la sentencia
+     */
+    public boolean ejecutar(String sql) {
+        Statement st = null;
+        rs = null;
         try {
-            Class.forName(driver);
-            conn.close();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+        } catch (Exception e) {
+            return false;
         }
+
+        return true;
     }
 
-    public void registrar(String tabla, String datos) {
+    /**
+     * True si pudo ejecutar la sentencia
+     *
+     * @param sql
+     * @return True si el ResultSet es diferente de vacio
+     */
+    public boolean ejecutarConsulta(String sql) {
+        Statement st = null;
+        rs = null;
         try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, login, password);
-            if (conn != null) {
-                System.out.println("Conexión a base de datos " + url + " ... Ok");
-                st = conn.createStatement(r.TYPE_SCROLL_SENSITIVE, r.CONCUR_UPDATABLE);
-                st.executeUpdate("INSERT  INTO " + tabla + " VALUES" + "(" + datos + ")");
-                conn.close();
-                st.close();
-                JOptionPane.showMessageDialog(null, "Los datos han sido guardados");
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (!rs.next()) {
+                return false;
+            } else {
+                return true;
             }
-        } catch (SQLException ex) {
-            System.out.println("Hubo un problema al intentar conectarse con la base de datos " + url);
-            JOptionPane.showMessageDialog(null, "Los datos no han sido guardados");
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
+        } catch (Exception e) {
+            return false;
         }
     }
 
-    public String Generarcodigo(String tabla) {
-        int resultado = 0;
+    /**
+     * metodo ejecutardml
+     *
+     * @param sql
+     * @return True si puede realizar la sentencia dml
+     */
+    public boolean ejecutarDml(String sql) {
+        Statement st = null;
+        rs = null;
         try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, login, password);
-            if (conn != null) {
-                System.out.println("Conexión a base de datos " + url + " ... Ok");
-                st = conn.createStatement(r.TYPE_SCROLL_SENSITIVE, r.CONCUR_UPDATABLE);
-                r = st.executeQuery("SELECT COUNT(*) FROM " + tabla);
-                r.next();
-                resultado = r.getInt(1) + 1;
-                st.close();
-                conn.close();
-                r.close();
-            }
-        } catch (SQLException ex) {
-            System.out.println("Hubo un problema al intentar conectarse con la base de datos " + url);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
+            st = con.createStatement();
+            st.executeUpdate(sql);
+        } catch (Exception e) {
+            return false;
         }
-        if (resultado <= 9) {
-            return "0" + resultado;
-        } else {
-            return "" + resultado;
+        return true;
+    }
+
+    /**
+     * ejecuta sentencias dml
+     *
+     * @param sql
+     * @return returna un valor mayor 0 si ejecuto la sentencia dml
+     */
+    public int ejecutarDmlInt(String sql) {
+        Statement st = null;
+        rs = null;
+        try {
+            st = con.createStatement();
+            return (st.executeUpdate(sql));
+        } catch (Exception e) {
+            return -1;
         }
     }
 
-    public void Actualizar(String datos) {
+    /**
+     *
+     * cierra la conexion a la Base de datos
+     */
+    public void cerrarConexion() {
         try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, login, password);
-            if (conn != null) {
-                System.out.println("Conexión a base de datos " + url + " ... Ok");
-                st = conn.createStatement(r.TYPE_SCROLL_SENSITIVE, r.CONCUR_UPDATABLE);
-                st.executeUpdate(datos);
-                conn.close();
-                st.close();
-                JOptionPane.showMessageDialog(null, "Los datos han sido Actualizados");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Hubo un problema al intentar conectarse con la base de datos " + url);
-            JOptionPane.showMessageDialog(null, "Los datos no han sido Actualizados");
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
+            con.close();
+        } catch (Exception e) {
+            e.toString();
         }
-    }
-
-    public void Eliminar(String datos) {
-        try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, login, password);
-            if (conn != null) {
-                System.out.println("Conexión a base de datos " + url + " ... Ok");
-                st = conn.createStatement(r.TYPE_SCROLL_SENSITIVE, r.CONCUR_UPDATABLE);
-                st.executeUpdate(datos);
-                conn.close();
-                st.close();
-                JOptionPane.showMessageDialog(null, "Los datos han sido Eliminados");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Hubo un problema al intentar conectarse con la base de datos " + url);
-            JOptionPane.showMessageDialog(null, "Los datos no han sido Eliminados");
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    public String Buscar(String datos, String id) {
-        String dato = "";
-        try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, login, password);
-            if (conn != null) {
-
-                st = conn.createStatement(r.TYPE_SCROLL_SENSITIVE, r.CONCUR_UPDATABLE);
-                r = st.executeQuery(datos);
-                r.next();
-                dato = r.getString(id);
-                st.close();
-                conn.close();
-                r.close();
-            }
-        } catch (SQLException ex) {
-            System.out.println("Hubo un problema al intentar conectarse con la base de datos " + url);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
-        return dato;
-    }
-
-    public Integer BuscarEntero(String datos, String id) {
-        int dato = 0;
-        try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, login, password);
-            if (conn != null) {
-                st = conn.createStatement(r.TYPE_SCROLL_SENSITIVE, r.CONCUR_UPDATABLE);
-                r = st.executeQuery(datos);
-                r.next();
-                dato = r.getInt(id);
-                st.close();
-                conn.close();
-                r.close();
-            }
-        } catch (SQLException ex) {
-            System.out.println("Hubo un problema al intentar conectarse con la base de datos " + url);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
-        return dato;
     }
 
 }

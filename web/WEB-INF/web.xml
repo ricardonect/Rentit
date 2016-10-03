@@ -16,6 +16,10 @@
         <servlet-name>RegistrarUsuarioNuevo</servlet-name>
         <servlet-class>Rentit.controlador.RegistrarUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CargarProductosActivos</servlet-name>
+        <servlet-class>Rentit.controlador.CargarProductos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidarSesionActiva</servlet-name>
         <url-pattern>/ValidarSesion</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>RegistrarUsuarioNuevo</servlet-name>
         <url-pattern>/RegistrarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargarProductosActivos</servlet-name>
+        <url-pattern>/CargarProductos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

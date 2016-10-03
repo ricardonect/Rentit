@@ -25,6 +25,34 @@
             body { padding-top: 60px; }
         </style>
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+        <%--Inicio Cargar datos dinamicos control ajax--%>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script>
+            /*$(document).ready(function() {                     
+             $('#submit').click(function(event) {  
+             var username=$('#user').val();
+             $.get('CargarProductos',{user:username},function(responseText) { 
+             $('#tabla').text(responseText);         
+             });
+             });
+             });-*/
+            $(document).ready(function () {
+                get_data() //After page load this function called
+            });
+
+            function get_data() {
+                $.ajax({
+                    url: 'CargarProductos',
+                    type: 'get',
+                    data: "",
+                    success: function (msg) {
+                        $("#tabla").html(msg);
+                    }
+                });
+            }
+        </script>
+        <%--Fin Cargar datos dinamicos control ajax--%>
     </head>
     <body>
 
@@ -64,12 +92,12 @@
                 Texto principal de bienvenida a nuestra página. Prueba a redimiensinar el 
                 navegador y comprobará como se adapta el diseño al nuevo tamaño.
             </p>
-            <p><a class="btn btn-primary btn-large">Más información</a></p>
+            <p><a id="submit" class="btn btn-primary btn-large">Más información</a></p>
         </div>
         <!-- Fin Region principal-->
 
         <!-- Inicio Filas-->
-        <div class="row-fluid">
+        <div id="tabla" class="row-fluid">
             <div class="span4">
                 <h2>Producto</h2>
                 <p>

@@ -5,26 +5,25 @@
  */
 package Rentit.controlador;
 
-import Rentit.modelo.Usuario;
 import Rentit.modelo.Conexion;
+import Rentit.modelo.SubCategorias;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Ricardo
  */
-public class ValidarSesion extends HttpServlet {
+public class CargarProductos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,27 +37,11 @@ public class ValidarSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        Conexion con = new Conexion();
-        con.cerrarConexion();
-        
-        Usuario usuario = new Usuario();        
-        usuario.setUsuario(request.getParameter("ctrl_inputUsuario"));
-        usuario.setPassword(request.getParameter("ctrl_inputPass"));
-        
-        String rs;
-//        rs = con.Buscar(usuario.GetUser(usuario.getUsuario(), usuario.getPassword()),"id_usuario");
-        
-//        if (!rs.isEmpty()) {
-//                HttpSession session = request.getSession();                
-//                
-//                session.setAttribute("usuarioActivo", usuario);
-//                
-//                request.getRequestDispatcher("Home.jsp").forward(request, response);
-//        } else {
-//            /*usuario incorrecta*/
-//            request.getRequestDispatcher("Error.jsp").forward(request, response);
-//        }
+
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,10 +56,23 @@ public class ValidarSesion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        response.setContentType("text/html; charset=iso-8859-1");
+        PrintWriter out = response.getWriter();
+
+        Conexion con = new Conexion();
+        con.cargaDriver();
+
         try {
+            con.Conexion();
+            SubCategorias sub = new SubCategorias();
+            List<SubCategorias> listsublistsub = new ArrayList<>();
+            listsublistsub = (List<SubCategorias>) sub.ListarSubCategorias();
+            
             processRequest(request, response);
+            
         } catch (SQLException ex) {
-            Logger.getLogger(ValidarSesion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CargarProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -91,10 +87,11 @@ public class ValidarSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ValidarSesion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CargarProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
