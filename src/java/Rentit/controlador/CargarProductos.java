@@ -68,9 +68,20 @@ public class CargarProductos extends HttpServlet {
             SubCategorias sub = new SubCategorias();
             List<SubCategorias> listsublistsub = new ArrayList<>();
             listsublistsub = (List<SubCategorias>) sub.ListarSubCategorias();
-            
+
+            for (int i = 0; i < listsublistsub.size(); i++) {
+                out.println("<div class='span4'>");
+                out.println("<h2>" + listsublistsub.get(i).getNombre() + "</h2>");
+                out.print("<p>");
+                out.println("Descripción del producto presentado. Descripción del producto presentado.");
+                out.println("Descripción del producto presentado.");
+                out.println("</p>");
+                out.println("<p> < a class='btn' href = '#' > View details & raquo;< / a > < / p>");
+                out.println("</div >");
+            }
+
             processRequest(request, response);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(CargarProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
