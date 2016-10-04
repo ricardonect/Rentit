@@ -75,8 +75,6 @@ public class CargarProductos extends HttpServlet {
                 out.print("<p>");
                 out.println("Descripción del producto presentado. Descripción del producto presentado.");
                 out.println("Descripción del producto presentado.");
-                out.println("</p>");
-                out.println("<p> < a class='btn' href = '#' > View details & raquo;< / a > < / p>");
                 out.println("</div >");
             }
 

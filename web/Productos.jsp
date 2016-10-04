@@ -28,15 +28,8 @@
 
         <%--Inicio Cargar datos dinamicos control ajax--%>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <%--Inicio Script Cargar datos row-fluid --%>
         <script>
-            /*$(document).ready(function() {                     
-             $('#submit').click(function(event) {  
-             var username=$('#user').val();
-             $.get('CargarProductos',{user:username},function(responseText) { 
-             $('#tabla').text(responseText);         
-             });
-             });
-             });-*/
             $(document).ready(function () {
                 get_data() //After page load this function called
             });
@@ -52,6 +45,8 @@
                 });
             }
         </script>
+        <%--Fin Script Cargar datos row-fluid --%>
+        
         <%--Fin Cargar datos dinamicos control ajax--%>
     </head>
     <body>
@@ -98,22 +93,7 @@
 
         <!-- Inicio Filas-->
         <div id="tabla" class="row-fluid">
-            <div class="span4">
-                <h2>Producto</h2>
-                <p>
-                    Descripción del producto presentado. Descripción del producto presentado. 
-                    Descripción del producto presentado.
-                </p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <div class="span4">
-                <h2>Producto 2</h2>
-                <p>
-                    Descripción del producto presentado. Descripción del producto presentado. 
-                    Descripción del producto presentado.
-                </p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
+
         </div>
         <!-- Fin Filas-->
 
