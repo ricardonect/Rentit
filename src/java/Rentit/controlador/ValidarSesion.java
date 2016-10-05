@@ -5,7 +5,7 @@
  */
 package Rentit.controlador;
 
-import Rentit.modelo.Usuario;
+import Rentit.modelo.Usuarios;
 import Rentit.modelo.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +42,7 @@ public class ValidarSesion extends HttpServlet {
         Conexion con = new Conexion();
         con.cerrarConexion();
         
-        Usuario usuario = new Usuario();        
+        Usuarios usuario = new Usuarios();        
         usuario.setUsuario(request.getParameter("ctrl_inputUsuario"));
         usuario.setPassword(request.getParameter("ctrl_inputPass"));
         

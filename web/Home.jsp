@@ -5,9 +5,9 @@
 --%>
 
 <%-- Inicio Sesion activa --%>
-<%@page import="Rentit.modelo.Usuario"%>
+<%@page import="Rentit.modelo.Usuarios"%>
 <%
-    Usuario usu = (Usuario) session.getAttribute("usuarioActivo");
+    Usuarios usu = (Usuarios) session.getAttribute("usuarioActivo");
 
     if (usu == null) {
         request.getRequestDispatcher("Login.jsp").forward(request, response);

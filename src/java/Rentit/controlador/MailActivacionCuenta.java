@@ -6,7 +6,7 @@
 package Rentit.controlador;
 
 import Rentit.modelo.Conexion;
-import Rentit.modelo.Usuario;
+import Rentit.modelo.Usuarios;
 import Rentit.modelo.Terceros;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,7 +47,7 @@ public class MailActivacionCuenta extends HttpServlet {
             Conexion con = new Conexion();
             con.cerrarConexion();
 
-            Usuario usuario = new Usuario();
+            Usuarios usuario = new Usuarios();
             Terceros terceros = new Terceros();
 
             usuario.setUsuario(request.getParameter("usuario"));

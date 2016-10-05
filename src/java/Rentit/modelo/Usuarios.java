@@ -9,13 +9,13 @@ package Rentit.modelo;
  *
  * @author Ricardo
  */
-public class Usuario {
+public class Usuarios {
     
     private long id_usuario;
     private String usuario;
     private String password;
     
-    public Usuario() {
+    public Usuarios() {
     }
 
     public long getId_usuario() {
