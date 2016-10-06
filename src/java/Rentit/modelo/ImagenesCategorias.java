@@ -74,9 +74,7 @@ public class ImagenesCategorias {
 
                 while (con.rs.next()) {
                     ImagenesCategorias img = new ImagenesCategorias();
-                    img.setId_imagen(con.rs.getLong("id_imagen"));
-                    img.setId_categoria(con.rs.getLong("id_categoria"));
-                    img.setId_sub_categoria(con.rs.getLong("id_sub_categoria"));
+
                     img.setImage(con.rs.getBlob("imagen"));
                 }
             }
@@ -86,9 +84,10 @@ public class ImagenesCategorias {
         return imagenes;
     }
 
-    public List<ImagenesCategorias> BuscarImagenesPorCategoria(long idCategoria) {
-        String sql = "SELECT * FROM rentit.imagenes_categorias where id_categoria = " + idCategoria;
+    public Blob BuscarImagenesPorCategoria(long idCategoria) {
+        String sql = "SELECT imagen FROM rentit.imagenes_categorias where id_categoria = " + idCategoria;
         List<ImagenesCategorias> imagenes = new ArrayList<ImagenesCategorias>();
+        Blob blob = null;
 
         try {
             Conexion con = new Conexion();
@@ -97,17 +96,14 @@ public class ImagenesCategorias {
             if (con.ejecutar(sql)) {
 
                 while (con.rs.next()) {
-                    ImagenesCategorias img = new ImagenesCategorias();
-                    img.setId_imagen(con.rs.getLong("id_imagen"));
-                    img.setId_categoria(con.rs.getLong("id_categoria"));
-                    img.setId_sub_categoria(con.rs.getLong("id_sub_categoria"));
-                    img.setImage(con.rs.getBlob("imagen"));
+                    
+                blob = con.rs.getBlob("imagen");
                 }
             }
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-        return imagenes;
+        return blob;
     }
 
 }

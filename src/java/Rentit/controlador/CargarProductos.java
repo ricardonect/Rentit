@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,7 +60,7 @@ public class CargarProductos extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html; charset=iso-8859-1");
-        PrintWriter out = response.getWriter();
+        ServletOutputStream out = response.getOutputStream();
 
         Conexion con = new Conexion();
         con.cargaDriver();
@@ -71,12 +72,12 @@ public class CargarProductos extends HttpServlet {
             listsublistsub = (List<SubCategorias>) sub.ListarSubCategorias();
             ImagenesCategorias img = new ImagenesCategorias();
             List<ImagenesCategorias> ListImage = new ArrayList<ImagenesCategorias>();
-            ListImage = (List<ImagenesCategorias>) img.BuscarImagenesPorCategoria(listsublistsub.get(0).getId_categoria());
 
             for (int i = 0; i < listsublistsub.size(); i++) {
                 out.println("<div class='span4'>");
-                for(int j=0; j < ListImage.size();j++){
-                out.println("<img src=\""+ListImage.get(j).getImage()+"\" class=\"img-circle\" alt=\"Cinque Terre\" width=\"128\" height=\"128\">");
+                img.setImage(img.BuscarImagenesPorCategoria(listsublistsub.get(i).getId_categoria()));
+                if(img.getImage() != null){
+                out.println("<img src='"+img.getImage()+"' width='128' height='128'>");
                 }
                 out.println("<h2>" + listsublistsub.get(i).getNombre() + "</h2>");
                 out.print("<p>");
@@ -84,7 +85,7 @@ public class CargarProductos extends HttpServlet {
                 out.println("Descripción del producto presentado.");
                 out.println("</div >");
             }
-
+            response.setContentType("image/png");
             processRequest(request, response);
 
         } catch (SQLException ex) {
