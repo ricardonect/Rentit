@@ -6,6 +6,7 @@
 package Rentit.controlador;
 
 import Rentit.modelo.Conexion;
+import Rentit.modelo.ImagenesCategorias;
 import Rentit.modelo.SubCategorias;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -68,9 +69,15 @@ public class CargarProductos extends HttpServlet {
             SubCategorias sub = new SubCategorias();
             List<SubCategorias> listsublistsub = new ArrayList<>();
             listsublistsub = (List<SubCategorias>) sub.ListarSubCategorias();
+            ImagenesCategorias img = new ImagenesCategorias();
+            List<ImagenesCategorias> ListImage = new ArrayList<ImagenesCategorias>();
+            ListImage = (List<ImagenesCategorias>) img.BuscarImagenesPorCategoria(listsublistsub.get(0).getId_categoria());
 
             for (int i = 0; i < listsublistsub.size(); i++) {
                 out.println("<div class='span4'>");
+                for(int j=0; j < ListImage.size();j++){
+                out.println("<img src=\""+ListImage.get(j).getImage()+"\" class=\"img-circle\" alt=\"Cinque Terre\" width=\"128\" height=\"128\">");
+                }
                 out.println("<h2>" + listsublistsub.get(i).getNombre() + "</h2>");
                 out.print("<p>");
                 out.println("Descripción del producto presentado. Descripción del producto presentado.");
